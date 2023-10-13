@@ -30,11 +30,11 @@ registerpass=$1
 
 echo "Deploy the app from jar with -n $jarapp -g $rg  --environment $enviroment --source $jarpath --ingress external --target-port 8080 --subscription $subscription"
 
-az containerapp create -n $jarapp -g $rg  --environment $enviroment --source $jarpath --ingress external --target-port 8080 --subscription $subscription --registry-server $registryserver --registry-user $registryuser --registry-pass VFLqULNk9jk0QHYiolNJzdheq9+XTUg4Pn+1vAaPJ8+ACRA0Snb4 --bind-java-component myeureka mysba myconfig
+az containerapp create -n $jarapp -g $rg  --environment $enviroment --source $jarpath --ingress external --target-port 8080 --subscription $subscription --min-replicas 1 --registry-server $registryserver --registry-user $registryuser --registry-pass $registerpass --bind-java-component myeureka mysba myconfig
 
 echo "Deploy the app from source with -n $sourceapp -g $rg  --environment $enviroment --source $sourcepath --ingress external --target-port 8080 --subscription $subscription"
 
-az containerapp create -n $sourceapp -g $rg  --environment $enviroment --source $sourcepath --ingress external --target-port 8080 --subscription $subscription --registry-server $registryserver --registry-user $registryuser --registry-pass VFLqULNk9jk0QHYiolNJzdheq9+XTUg4Pn+1vAaPJ8+ACRA0Snb4 --bind-java-component myeureka mysba myconfig
+az containerapp create -n $sourceapp -g $rg  --environment $enviroment --source $sourcepath --ingress external --target-port 8080 --subscription $subscription --min-replicas 1 --registry-server $registryserver --registry-user $registryuser --registry-pass $registerpass --bind-java-component myeureka mysba myconfig
 
 
 az containerapp list -g $rg  --subscription $subscription  --environment $enviroment -o table 
