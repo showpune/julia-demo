@@ -2,7 +2,7 @@
 #az extension remove -n containerapp
 #az extension add --source ./containerapp-0.3.66-py2.py3-none-any.whl
 
-
+az account set --subscription d0822b01-62ea-4eb9-885b-95c60e4250b4
 #extension=./containerapp-0.3.66-py2.py3-none-any.whl
 jarpath=./sample/spring-petclinic-api-gateway/target/spring-petclinic-api-gateway-3.0.2.jar
 jarapp=api-gateway
@@ -11,10 +11,10 @@ sourceapp=customers-service
 #git-url= 
 
 
-enviroment=zhiyongli-test-env
+enviroment=julia-demo-env
 rg=zhiyongli-test-group
-# enviroment=shiqiu-test-env-01
-# rg=shiqiu-test-rg-01
+#enviroment=shiqiu-test-env-01
+#rg=shiqiu-test-rg-01
 subscription=d0822b01-62ea-4eb9-885b-95c60e4250b4
 registryserver=zhiyongacr.azurecr.io
 registryuser=zhiyongacr
@@ -23,9 +23,9 @@ registerpass=VFLqULNk9jk0QHYiolNJzdheq9+XTUg4Pn+1vAaPJ8+ACRA0Snb4
 # enable java component
 az containerapp env show -n $enviroment -g $rg
 az containerapp env java-component list --environment $enviroment -g $rg
-az containerapp env java-component spring-boot-admin create -n mysba -g $rg --environment $enviroment --enable-dashboard
-az containerapp env java-component spring-cloud-eureka create -n myeureka -g $rg --environment $enviroment --enable-dashboard
-az containerapp env java-component spring-cloud-config create -n myconfig -g $rg --environment $enviroment --yaml ./config.yaml
+az containerapp env java-component spring-boot-admin create -n mysba -g $rg --environment $enviroment --subscription $subscription --enable-dashboard
+az containerapp env java-component spring-cloud-eureka create -n myeureka -g $rg --environment $enviroment --subscription $subscription --enable-dashboard
+az containerapp env java-component spring-cloud-config create -n myconfig -g $rg --environment $enviroment --subscription $subscription --yaml ./config.yaml
 az containerapp env java-component list --environment $enviroment -g $rg
 
 

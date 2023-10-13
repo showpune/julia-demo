@@ -1,4 +1,4 @@
-enviroment=zhiyongli-test-env
+enviroment=julia-demo-env
 rg=zhiyongli-test-group
 # enviroment=shiqiu-test-env-01
 # rg=shiqiu-test-rg-01
