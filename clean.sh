@@ -1,7 +1,7 @@
 enviroment=julia-demo-env
 rg=zhiyongli-test-group
-# enviroment=shiqiu-test-env-01
-# rg=shiqiu-test-rg-01
+# enviroment=zhiyong-test-appenv
+# rg=zhiyongli-test
 subscription=d0822b01-62ea-4eb9-885b-95c60e4250b4
 registryserver=zhiyongacr.azurecr.io
 registryuser=zhiyongacr
