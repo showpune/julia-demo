@@ -17,6 +17,15 @@ registryserver=zhiyongacr.azurecr.io
 registryuser=zhiyongacr
 registerpass=$1
 
+# enable java component
+az containerapp env show -n $enviroment -g $rg
+az containerapp env java-component list --environment $enviroment -g $rg
+az containerapp env java-component spring-boot-admin create -n mysba -g $rg --environment $enviroment --enable-dashboard
+az containerapp env java-component spring-cloud-eureka create -n myeureka -g $rg --environment $enviroment --enable-dashboard
+az containerapp env java-component spring-cloud-config create -n myconfig -g $rg --environment $enviroment --yaml ./config.yaml
+az containerapp env java-component list --environment $enviroment -g $rg
+
+
 #az containerapp delete -n $sourceapp -g $rg  --subscription $subscription
 #az containerapp delete -n $jarapp -g $rg  --subscription $subscription
 
