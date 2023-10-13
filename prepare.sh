@@ -15,3 +15,5 @@ az containerapp create -n $jarapp -g $rg  --environment $enviroment --source $ja
 jarpath=/mnt/c/IdeaProjects/spring-petclinic-microservices/spring-petclinic-admin-server/target/spring-petclinic-admin-server-3.0.2.jar
 jarapp=admin-server
 az containerapp create -n $jarapp -g $rg  --environment $enviroment --source $jarpath --ingress external --target-port 8080 --subscription $subscription --registry-server $registryserver --registry-user $registryuser --registry-pass $registerpass
+
+az containerapp list -g $rg  --subscription $subscription  --environment $enviroment -o table 
