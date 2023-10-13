@@ -51,13 +51,11 @@ public class ApiGatewayApplication {
     }
 
     @Bean
-    @LoadBalanced
     RestTemplate loadBalancedRestTemplate() {
         return new RestTemplate();
     }
 
     @Bean
-    @LoadBalanced
     public WebClient.Builder loadBalancedWebClientBuilder() {
         return WebClient.builder();
     }

@@ -15,7 +15,10 @@
  */
 package org.springframework.samples.petclinic.api.application;
 
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.api.dto.OwnerDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -27,12 +30,20 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class CustomersServiceClient {
-
     private final WebClient.Builder webClientBuilder;
 
+    @Autowired
+    private EurekaClient eurekaClient;
+
     public Mono<OwnerDetails> getOwner(final int ownerId) {
+        InstanceInfo service = eurekaClient.getApplication("customers-service").getInstances().get(0);
+        String hostname = String.format("http://%s:%s/owners/%s", service.getIPAddr(), service.getPort(), ownerId);
+
+        System.out.println("IP is" + service.getIPAddr());
+        System.out.println("Hostname is" + hostname);
+
         return webClientBuilder.build().get()
-            .uri("http://customers-service/owners/{ownerId}", ownerId)
+            .uri(hostname)
             .retrieve()
             .bodyToMono(OwnerDetails.class);
     }
