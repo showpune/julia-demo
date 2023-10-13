@@ -1,21 +1,24 @@
-#
-extension=./containerapp-0.3.66-py2.py3-none-any.whl
+#update the extension
+#az extension remove -n containerapp
+#az extension add --source ./containerapp-0.3.66-py2.py3-none-any.whl
+
+
+#extension=./containerapp-0.3.66-py2.py3-none-any.whl
 jarpath=./sample/spring-petclinic-api-gateway/target/spring-petclinic-api-gateway-3.0.2.jar
 jarapp=api-gateway
 sourcepath=./sample/spring-petclinic-customers-service/
 sourceapp=customers-service
 #git-url= 
 
-#update the extension
-#az extension remove -n containerapp
-#az extension add --source $extension
 
-enviroment=shiqiu-test-env-01
-rg=shiqiu-test-rg-01
+enviroment=zhiyongli-test-env
+rg=zhiyongli-test-group
+# enviroment=shiqiu-test-env-01
+# rg=shiqiu-test-rg-01
 subscription=d0822b01-62ea-4eb9-885b-95c60e4250b4
 registryserver=zhiyongacr.azurecr.io
 registryuser=zhiyongacr
-registerpass=$1
+registerpass=VFLqULNk9jk0QHYiolNJzdheq9+XTUg4Pn+1vAaPJ8+ACRA0Snb4
 
 # enable java component
 az containerapp env show -n $enviroment -g $rg
@@ -26,16 +29,6 @@ az containerapp env java-component spring-cloud-config create -n myconfig -g $rg
 az containerapp env java-component list --environment $enviroment -g $rg
 
 
-#az containerapp delete -n $sourceapp -g $rg  --subscription $subscription
-#az containerapp delete -n $jarapp -g $rg  --subscription $subscription
-
-# set resource id
-# #echo 'Enable the spring cloud config'
-# configresourceid=$(az containerapp env spring-cloud-config enable --git-url $git-url | jq -r '.configResourceId')
-# echo 'Enable the spring cloud Eureka'
-# eurekaresourceid=$(az containerapp env spring-cloud-eureka enable | jq -r '.eurekaResourceId')
-# echo 'Enable the spring boot admin'
-# adminresourceid=$(az containerapp env spring-boot-admin enable | jq -r '.adminResourceId')
 
 echo "Deploy the app from jar with -n $jarapp -g $rg  --environment $enviroment --source $jarpath --ingress external --target-port 8080 --subscription $subscription"
 
