@@ -38,7 +38,6 @@ echo "Deploy the app from source with -n $sourceapp -g $rg  --environment $envir
 
 az containerapp create -n $sourceapp -g $rg  --environment $enviroment --source $sourcepath --ingress external --target-port 8080 --subscription $subscription --min-replicas 1 --registry-server $registryserver --registry-user $registryuser --registry-pass $registerpass --bind-java-component myeureka mysba myconfig
 
-
 az containerapp list -g $rg  --subscription $subscription  --environment $enviroment -o table 
 
 

@@ -24,7 +24,11 @@ spring:
             - Path=/api/customer/**
           filters:
             - StripPrefix=2
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,metrics,loggers,beans,threaddump
 
 
 ---
