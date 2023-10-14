@@ -27,7 +27,7 @@ az containerapp env java-component spring-cloud-config create -n myconfig -g $rg
 az containerapp env java-component spring-cloud-eureka create -n myeureka -g $rg --environment $enviroment --subscription $subscription --enable-dashboard
 az containerapp env java-component spring-boot-admin create -n mysba -g $rg --environment $enviroment --subscription $subscription --enable-dashboard
 
-az containerapp env java-component list --environment $enviroment -g $rg
+az containerapp env java-component list --environment $enviroment -g $rg | jq '.[]|  [.name,.resourceGroup,.properties.configuration.ingress.fqdn]'
 
 
 
