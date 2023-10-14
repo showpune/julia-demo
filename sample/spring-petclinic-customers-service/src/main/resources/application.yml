@@ -1,8 +1,20 @@
+database: hsqldb
 spring:
   application:
     name: customers-service
   config:
     import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath*:db/${database}/schema.sql
+      data-locations: classpath*:db/${database}/data.sql
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    generate-ddl: true
 management:
   endpoints:
     web:
